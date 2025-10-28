@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abraço Amigo - Cadastro</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+<header>
+  <h1>Cadastro de Voluntários</h1>
+  <p>Participe da nossa missão!</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="cadastro.html" class="ativo">Cadastro</a></li>
+  </ul>
+</nav>
+
+<main>
+  <section id="formulario-voluntarios">
+    <h2>Seja um Voluntário Abraço Amigo</h2>
+    <form id="formCadastro" action="#" method="post">
+      <div class="campo">
+        <label for="nome">Nome completo:</label>
+        <input type="text" id="nome" name="nome" required>
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="campo">
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" placeholder="(XX) XXXXX-XXXX" required>
+      </div>
+
+      <div class="campo">
+        <label for="areaInteresse">Área de interesse:</label>
+        <select id="areaInteresse" name="areaInteresse" required>
+          <option value="">Selecione...</option>
+          <option value="arteterapia">Arteterapia</option>
+          <option value="musica">Oficina de Música</option>
+          <option value="eventos">Eventos e Campanhas</option>
+          <option value="apoio">Apoio ao Idoso</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="mensagem">Por que deseja ser voluntário?</label>
+        <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+      </div>
+
+      <button type="submit" class="cta-btn">Enviar Cadastro</button>
+    </form>
+  </section>
+
+  <section id="imagem-voluntariado">
+    <h2>Junte-se a Nós!</h2>
+    <img src="assets/imagens/voluntariado_idosos.jpg.jpg" alt="Voluntariado com idosos" class="card">
+  </section>
+</main>
+
+<!-- Modal de confirmação -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Cadastro Realizado!</h2>
+    <p>Obrigado por se juntar à nossa missão!</p>
+    <button id="fecharModal">Fechar</button>
+  </div>
+</div>
+
+<footer>
+  <p>Contato: abracoamigo@gmail.com | (11) 4002-8922</p>
+</footer>
+
+</body>
+</html>
+
+
