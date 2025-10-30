@@ -1,59 +1,61 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("formCadastro");
+// ============================
+// FUNÇÃO DE MODAL
+// ============================
+const modal = document.getElementById('modal');
+const btnFechar = document.getElementById('fecharModal');
 
-  // Máscaras de CPF, telefone e CEP
-  const cpfInput = document.getElementById("cpf");
-  const telefoneInput = document.getElementById("telefone");
-  const cepInput = document.getElementById("cep");
+function abrirModal() {
+  modal.classList.add('show');
+}
 
-  function aplicarMascara(input, mascara) {
-    input.addEventListener("input", () => {
-      let valor = input.value.replace(/\D/g, "");
-      let novoValor = "";
-      let indice = 0;
-      for (let i = 0; i < mascara.length && indice < valor.length; i++) {
-        if (mascara[i] === "#") {
-          novoValor += valor[indice];
-          indice++;
-        } else {
-          novoValor += mascara[i];
-        }
-      }
-      input.value = novoValor;
-    });
-  }
+function fecharModal() {
+  modal.classList.remove('show');
+}
 
-  if (cpfInput) aplicarMascara(cpfInput, "###.###.###-##");
-  if (telefoneInput) aplicarMascara(telefoneInput, "(##) #####-####");
-  if (cepInput) aplicarMascara(cepInput, "#####-###");
+if (btnFechar) {
+  btnFechar.addEventListener('click', fecharModal);
+}
 
-  // Modal de sucesso
-  const modal = document.createElement("div");
-  modal.classList.add("modal");
-  modal.innerHTML = `
-    <div class="modal-content">
-      <h2>Cadastro enviado com sucesso!</h2>
-      <button id="fecharModal">Fechar</button>
-    </div>
-  `;
-  document.body.appendChild(modal);
+// ============================
+// ALERTAS / TOAST
+// ============================
+function mostrarAlerta(tipo, mensagem) {
+  const alert = document.createElement('div');
+  alert.classList.add('alert', `alert-${tipo}`, 'show');
+  alert.textContent = mensagem;
 
-  const fecharModal = document.getElementById("fecharModal");
+  document.body.appendChild(alert);
 
-  if (form) {
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-      modal.style.display = "flex";
-      form.reset();
-    });
-  }
+  // Remove após 3 segundos
+  setTimeout(() => {
+    alert.classList.remove('show');
+    alert.remove();
+  }, 3000);
+}
 
-  fecharModal.addEventListener("click", () => {
-    modal.style.display = "none";
+// ============================
+// FORMULÁRIO DE CADASTRO
+// ============================
+const formCadastro = document.getElementById('formCadastro');
+
+if (formCadastro) {
+  formCadastro.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Aqui você poderia validar mais campos se quiser
+    const nome = formCadastro.nome.value.trim();
+    const email = formCadastro.email.value.trim();
+
+    if (nome === '' || email === '') {
+      mostrarAlerta('error', 'Preencha todos os campos obrigatórios!');
+      return;
+    }
+
+    // Mostra modal de sucesso
+    abrirModal();
+
+    // Limpa o formulário
+    formCadastro.reset();
   });
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) modal.style.display = "none";
-  });
-});
+}
 
