@@ -1,106 +1,351 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abraço Amigo - Página Inicial</title>
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abraço Amigo — Projeto Completo</title>
+  <style>
+  /* ===== RESET & BASE ===== */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:Inter, "Poppins", Arial, sans-serif;
+    background: linear-gradient(135deg,#eef7f5,#ffffff);
+    color:#223;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    background: linear-gradient(90deg,#0d8b7a,#12b09a);
+    color:#fff;
+    padding:18px 28px;
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    box-shadow:0 6px 22px rgba(12,36,34,0.12);
+  }
+  .brand {display:flex;flex-direction:column}
+  header h1{font-size:20px;font-weight:700;letter-spacing:.2px}
+  header p{font-size:13px;opacity:.9}
+  nav ul{display:flex;gap:14px;list-style:none;align-items:center;margin-left:auto}
+  nav a{
+    color:#fff;text-decoration:none;font-weight:600;padding:8px 12px;border-radius:10px;transition:all .18s
+  }
+  nav a:hover{background:rgba(255,255,255,0.12)}
+  nav a.ativo{background:rgba(255,255,255,0.18);backdrop-filter:blur(4px)}
+
+  .cta-btn{
+    background:#fff;color:#0d8b7a;border:none;padding:9px 16px;border-radius:28px;font-weight:700;cursor:pointer;
+    box-shadow:0 6px 18px rgba(13,139,122,0.18);
+  }
+  .cta-btn:hover{background:#0fb593;color:#fff}
+
+  /* ===== LAYOUT ===== */
+  main{max-width:1100px;margin:22px auto;padding:0 18px}
+  .wrap{background:#fff;padding:18px;border-radius:14px;box-shadow:0 8px 24px rgba(34,50,50,.06);border:1px solid #eef4f3;margin-bottom:18px}
+  h2{color:#0d7a6c;text-align:center;margin-bottom:12px;font-size:20px}
+
+  .section-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+
+  /* ===== CARDS ===== */
+  .card{background:#fafcfb;border-radius:12px;border:1px solid #e8f1ef;overflow:hidden;box-shadow:0 6px 18px rgba(20,40,40,0.04);transition:transform .2s,box-shadow .2s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(20,40,40,0.08)}
+  .card img{width:100%;height:160px;object-fit:cover;display:block}
+  .card h3{padding:12px;color:#0d7a6c;text-align:center}
+  .card p{padding:0 12px 14px;color:#3b4a4a;font-size:14px}
+
+  .badges{display:flex;justify-content:center;gap:8px;padding-bottom:12px;flex-wrap:wrap}
+  .badge{background:#12b09a;color:#fff;padding:6px 10px;border-radius:14px;font-weight:700;font-size:13px}
+
+  /* ===== FORM ===== */
+  form{max-width:840px;margin:0 auto;background:#fff;padding:18px;border-radius:12px;border:1px solid #eef6f4;box-shadow:0 8px 26px rgba(20,40,40,0.04)}
+  .row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .campo{display:flex;flex-direction:column;margin-bottom:12px}
+  label{font-weight:600;color:#0d7a6c;margin-bottom:6px;font-size:13px}
+  input,select,textarea{padding:10px 12px;border-radius:10px;border:1px solid #d6eaea;background:#fbfffe;font-size:14px;transition:box-shadow .15s,border-color .15s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:#12b09a;box-shadow:0 6px 18px rgba(18,176,154,0.12)}
+  textarea{min-height:110px;resize:vertical}
+
+  .checkbox-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .small{font-size:13px;color:#3a4a4a}
+
+  .actions{display:flex;gap:12px;align-items:center;justify-content:flex-end;margin-top:8px}
+  .btn{background:#12b09a;color:#fff;padding:10px 16px;border-radius:12px;border:none;font-weight:700;cursor:pointer}
+  .btn.secondary{background:#eee;color:#333}
+
+  /* ===== VOLUNTEERS LIST ===== */
+  .list {margin-top:14px;border-top:1px dashed #e6f1ef;padding-top:12px}
+  .vol {display:flex;justify-content:space-between;align-items:center;padding:10px 8px;border-radius:8px;border:1px solid #f0f7f6;margin-bottom:8px;background:#fbffff}
+  .vol .meta{font-size:14px;color:#244}
+  .vol .meta small{display:block;color:#556;margin-top:4px;font-size:12px}
+
+  /* ===== MODAL ===== */
+  #modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);justify-content:center;align-items:center;padding:12px;z-index:60}
+  #modal.show{display:flex}
+  .modal-box{background:#fff;padding:18px;border-radius:12px;box-shadow:0 10px 40px rgba(20,40,40,0.15);max-width:420px;text-align:center}
+  .modal-box p{font-weight:600;color:#0d7a6c;margin-bottom:10px}
+  .modal-box button{background:#12b09a;color:#fff;border:none;padding:8px 14px;border-radius:10px;cursor:pointer}
+
+  footer{padding:16px;text-align:center;background:#0d7a6c;color:#fff;margin-top:20px;border-top:4px solid #12b09a}
+
+  /* ===== RESPONSIVO ===== */
+  @media(max-width:880px){.row{grid-template-columns:1fr}.row-3{grid-template-columns:repeat(2,1fr)}nav ul{gap:8px}}
+  @media(max-width:560px){.row-3{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-
-<header>
-  <h1>Abraço Amigo</h1>
-  <p>Amor e atenção para a melhor idade</p>
-  <a href="#projetos" class="cta-btn">Conheça Nossos Projetos</a>
-</header>
-
-<nav>
-  <ul>
-    <li><a href="index.html" class="ativo">Home</a></li>
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a href="cadastro.html">Cadastro</a></li>
-  </ul>
-</nav>
-
-<main>
-  <!-- Sobre a ONG -->
-  <section id="sobre">
-    <h2>Sobre a Nossa História</h2>
-    <p>A ONG Abraço Amigo nasceu com a missão de oferecer amor, atenção e qualidade de vida aos idosos em situação de vulnerabilidade.</p>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/voluntarios_com_idosos.jpg" alt="Voluntários com idosos sorrindo">
-        <h3 class="valor">Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/idosos_sorrindo.jpg" alt="Idosos em harmonia">
-        <h3 class="valor">Bem-Estar</h3>
-        <div class="badges">
-          <span class="badge">Saúde</span>
-          <span class="badge">Alegria</span>
-        </div>
-      </div>
+  <header>
+    <div class="brand">
+      <h1>Abraço Amigo</h1>
+      <p>Amor e atenção para a melhor idade</p>
     </div>
-  </section>
 
-  <!-- Valores -->
-  <section id="valores">
-    <h2>Nossos Valores</h2>
-    <div class="section-grid">
-      <div class="card">
-        <h3 class="valor">❤️ Respeito e Dignidade</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💛 Amor e Empatia</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💚 Transparência e Compromisso</h3>
-      </div>
+    <nav>
+      <ul>
+        <li><a href="#" data-page="home" class="ativo">Home</a></li>
+        <li><a href="#" data-page="projetos">Projetos</a></li>
+        <li><a href="#" data-page="cadastro">Cadastro</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex;gap:8px;align-items:center">
+      <button class="cta-btn" data-page="projetos">Conheça Nossos Projetos</button>
     </div>
-  </section>
+  </header>
 
-  <!-- Atividades -->
-  <section id="projetos">
-    <h2>Nossas Atividades</h2>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/arte_terapia_idosos.jpg" alt="Arteterapia com idosos">
-        <h3>Arteterapia</h3>
-        <div class="badges">
-          <span class="badge">Arte</span>
-          <span class="badge">Criatividade</span>
-        </div>
+  <main>
+    <div id="conteudo"></div>
+  </main>
+
+  <div id="modal"><div class="modal-box"><p id="modalMsg">Cadastro recebido!</p><button id="closeModal">Fechar</button></div></div>
+
+  <footer>© 2025 Abraço Amigo — Contato: abracoamigo@gmail.com</footer>
+
+<script>
+/* ===== pages (conteúdo dinâmico) ===== */
+function loadHome(){
+  const root = document.getElementById('conteudo');
+  root.innerHTML = `
+    <section class="wrap">
+      <h2>Quem Somos</h2>
+      <p style="text-align:center;margin-bottom:14px;color:#355">A Abraço Amigo promove qualidade de vida, companheirismo e atividades para a melhor idade — arte, exercícios cognitivos, eventos e apoio social.</p>
+      <div class="section-grid">
+        <div class="card"><img src="assets/imagens/aula_de_arte.jpg" alt="aula"><h3>Aulas de Arte</h3><p>Espaço para expressão criativa e socialização.</p></div>
+        <div class="card"><img src="assets/imagens/voluntarios_com_idosos.jpg" alt="voluntarios"><h3>Voluntariado</h3><p>Conexão entre gerações por meio de amor e cuidado.</p></div>
+        <div class="card"><img src="assets/imagens/idosos_sorrindo.jpg" alt="sorriso"><h3>Bem-Estar</h3><p>Atividades que promovem alegria e saúde emocional.</p></div>
       </div>
-      <div class="card">
-        <img src="assets/imagens/atividades-cognitivas.jpg" alt="Atividades cognitivas">
-        <h3>Atividades Cognitivas</h3>
-        <div class="badges">
-          <span class="badge">Memória</span>
-          <span class="badge">Lazer</span>
-        </div>
+    </section>
+
+    <section class="wrap">
+      <h2>Nossos Valores</h2>
+      <div class="section-grid">
+        <div class="card"><img src="assets/imagens/arte_terapia_idosos.jpg" alt=""><h3>Respeito</h3></div>
+        <div class="card"><img src="assets/imagens/atividades-cognitivas.jpg" alt=""><h3>Empatia</h3></div>
+        <div class="card"><img src="assets/imagens/voluntariado_idosos.jpg" alt=""><h3>Transparência</h3></div>
       </div>
-      <div class="card">
-        <img src="assets/imagens/voluntariado_idosos.jpg" alt="Voluntariado">
-        <h3>Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
+    </section>
+  `;
+}
+
+function loadProjetos(){
+  const root = document.getElementById('conteudo');
+  root.innerHTML = `
+    <section class="wrap">
+      <h2>Nossas Atividades</h2>
+      <div class="section-grid">
+        <div class="card"><img src="assets/imagens/arte_terapia_idosos.jpg" alt=""><h3>Arteterapia</h3><p>Oficinas para expressão, memória e socialização.</p></div>
+        <div class="card"><img src="assets/imagens/atividades-cognitivas.jpg" alt=""><h3>Atividades Cognitivas</h3><p>Exercícios de memória e raciocínio.</p></div>
+        <div class="card"><img src="assets/imagens/doacao.jpg" alt=""><h3>Campanhas</h3><p>Arrecadação e distribuição para quem precisa.</p></div>
       </div>
+    </section>
+  `;
+}
+
+function renderVolunteersList(){
+  const lista = JSON.parse(localStorage.getItem('voluntarios')||'[]');
+  if(!lista.length) return '<p class="small" style="text-align:center;color:#556">Nenhum voluntário cadastrado ainda.</p>';
+  return lista.map((v,i)=>`
+    <div class="vol">
+      <div class="meta">
+        <strong>${v.nome}</strong> — ${v.areaInteresse} • ${v.cidade} (${v.estado})
+        <small>${v.email} • ${v.telefone}</small>
+      </div>
+      <div style="font-size:12px;color:#556">${new Date(v.criado).toLocaleString()}</div>
     </div>
-  </section>
-</main>
+  `).join('');
+}
 
-<footer>
-  <p>Contato: abracoamigo@gmail.com | (11) 4002-8922</p>
-</footer>
+function loadCadastro(){
+  const root = document.getElementById('conteudo');
+  root.innerHTML = `
+    <section class="wrap">
+      <h2>Cadastro de Voluntários</h2>
 
+      <form id="formCadastro" novalidate>
+        <div class="row">
+          <div class="campo"><label for="nome">Nome completo *</label><input id="nome" name="nome" type="text" required></div>
+          <div class="campo"><label for="email">E-mail *</label><input id="email" name="email" type="email" required></div>
+        </div>
+
+        <div class="row">
+          <div class="campo"><label for="cpf">CPF *</label><input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" pattern="\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}" required></div>
+          <div class="campo"><label for="telefone">Telefone *</label><input id="telefone" name="telefone" type="tel" placeholder="(XX) XXXXX-XXXX" required></div>
+        </div>
+
+        <div class="row-3" style="margin-bottom:12px">
+          <div class="campo"><label for="dataNascimento">Data de Nascimento *</label><input id="dataNascimento" name="dataNascimento" type="date" required></div>
+          <div class="campo"><label for="cep">CEP *</label><input id="cep" name="cep" type="text" placeholder="00000-000" pattern="\\d{5}-\\d{3}" required></div>
+          <div class="campo"><label for="cidade">Cidade *</label><input id="cidade" name="cidade" type="text" required></div>
+        </div>
+
+        <div class="row">
+          <div class="campo"><label for="estado">Estado *</label>
+            <select id="estado" name="estado" required>
+              <option value="">Selecione...</option>
+              <option>SP</option><option>RJ</option><option>MG</option><option>RS</option><option>BA</option><option>PR</option>
+            </select>
+          </div>
+
+          <div class="campo"><label for="endereco">Endereço *</label><input id="endereco" name="endereco" type="text" required></div>
+        </div>
+
+        <div class="campo"><label for="areaInteresse">Área de Interesse *</label>
+          <select id="areaInteresse" name="areaInteresse" required>
+            <option value="">Selecione...</option>
+            <option value="arteterapia">Arteterapia</option>
+            <option value="musica">Oficina de Música</option>
+            <option value="eventos">Eventos e Campanhas</option>
+            <option value="apoio">Apoio ao Idoso</option>
+            <option value="saude">Apoio à Saúde</option>
+          </select>
+        </div>
+
+        <div class="campo"><label for="disponibilidade">Disponibilidade (marque pelo menos uma)</label>
+          <div class="checkbox-row">
+            <label><input type="checkbox" name="disponibilidade" value="Seg-Manhã"> Seg-Manhã</label>
+            <label><input type="checkbox" name="disponibilidade" value="Ter-Tarde"> Ter-Tarde</label>
+            <label><input type="checkbox" name="disponibilidade" value="Qua-Noite"> Qua-Noite</label>
+            <label><input type="checkbox" name="disponibilidade" value="FimSemana"> Fim de semana</label>
+          </div>
+        </div>
+
+        <div class="campo"><label for="mensagem">Por que deseja ser voluntário? *</label><textarea id="mensagem" name="mensagem" required></textarea></div>
+
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <label style="display:flex;gap:8px;align-items:center"><input id="termos" type="checkbox" required> <span class="small">Concordo em participar e receber informações.</span></label>
+          <div style="margin-left:auto" class="actions">
+            <button class="btn" type="submit">Enviar Cadastro</button>
+            <button class="btn secondary" type="button" id="limparLista">Limpar lista</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="list">
+        <h3 style="margin:10px 0 8px;color:#0d7a6c">Voluntários cadastrados</h3>
+        <div id="listaVoluntarios">${renderVolunteersList()}</div>
+      </div>
+    </section>
+  `;
+}
+
+/* ===== main (navegação e inicialização) ===== */
+document.addEventListener('DOMContentLoaded', function(){
+  const navLinks = document.querySelectorAll('nav a');
+  const cta = document.querySelector('.cta-btn');
+
+  function setActive(page){
+    navLinks.forEach(a => a.classList.toggle('ativo', a.dataset.page === page));
+  }
+
+  function go(page){
+    setActive(page);
+    if(page==='home') loadHome();
+    else if(page==='projetos') loadProjetos();
+    else if(page==='cadastro') loadCadastro();
+    else loadHome();
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  navLinks.forEach(a=>{
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      go(this.dataset.page);
+    });
+  });
+  cta.addEventListener('click', function(e){e.preventDefault(); go('projetos')});
+
+  // abrir home por padrão
+  go('home');
+
+  // Delegação: formulário, modal, limpar lista
+  document.body.addEventListener('submit', function(e){
+    if(e.target && e.target.id==='formCadastro'){
+      e.preventDefault();
+      const form = e.target;
+
+      // coleta valores
+      const disponibilidade = Array.from(form.querySelectorAll('input[name="disponibilidade"]:checked')).map(n=>n.value);
+      const dados = {
+        nome: form.nome.value.trim(),
+        email: form.email.value.trim(),
+        cpf: form.cpf.value.trim(),
+        telefone: form.telefone.value.trim(),
+        dataNascimento: form.dataNascimento.value,
+        endereco: form.endereco.value.trim(),
+        cep: form.cep.value.trim(),
+        cidade: form.cidade.value.trim(),
+        estado: form.estado.value,
+        areaInteresse: form.areaInteresse.value,
+        disponibilidade: disponibilidade,
+        mensagem: form.mensagem.value.trim(),
+        criado: new Date().toISOString()
+      };
+
+      // validação adicional
+      if(Object.values(dados).some(v=>v=== '' || v===null) || dados.areaInteresse==='' ){
+        alert('Preencha todos os campos obrigatórios.');
+        return;
+      }
+      if(!dados.disponibilidade.length){
+        if(!confirm('Você não marcou disponibilidade. Deseja continuar?')) return;
+      }
+
+      // salvar
+      const lista = JSON.parse(localStorage.getItem('voluntarios')||'[]');
+      lista.push(dados);
+      localStorage.setItem('voluntarios', JSON.stringify(lista));
+
+      // atualizar lista visível
+      const listContainer = document.getElementById('listaVoluntarios');
+      if(listContainer) listContainer.innerHTML = renderVolunteersList();
+
+      // abrir modal
+      document.getElementById('modal').classList.add('show');
+      document.getElementById('modalMsg') && (document.getElementById('modalMsg').textContent = 'Cadastro realizado com sucesso!');
+      form.reset();
+    }
+  });
+
+  // fechar modal
+  document.getElementById('closeModal').addEventListener('click', function(){ document.getElementById('modal').classList.remove('show') });
+
+  // limpar lista botão (delegado)
+  document.body.addEventListener('click', function(e){
+    if(e.target && e.target.id==='limparLista'){
+      if(!confirm('Apagar todos os voluntários salvos?')) return;
+      localStorage.removeItem('voluntarios');
+      const listContainer = document.getElementById('listaVoluntarios');
+      if(listContainer) listContainer.innerHTML = renderVolunteersList();
+      alert('Lista limpa.');
+    }
+  });
+});
+</script>
 </body>
 </html>

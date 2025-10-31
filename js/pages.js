@@ -1,93 +1,3 @@
-// ============================
-// Funções de carregamento das páginas
-// ============================
-
-function loadHome() {
-  const conteudo = document.getElementById('conteudo');
-  conteudo.innerHTML = `
-  <section id="sobre">
-    <h2>Sobre a Nossa História</h2>
-    <p>A ONG Abraço Amigo nasceu com a missão de oferecer amor, atenção e qualidade de vida aos idosos em situação de vulnerabilidade.</p>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/voluntarios_com_idosos.jpg" alt="Voluntários com idosos sorrindo">
-        <h3 class="valor">Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/idosos_sorrindo.jpg" alt="Idosos em harmonia">
-        <h3 class="valor">Bem-Estar</h3>
-        <div class="badges">
-          <span class="badge">Saúde</span>
-          <span class="badge">Alegria</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="valores">
-    <h2>Nossos Valores</h2>
-    <div class="section-grid">
-      <div class="card">
-        <h3 class="valor">❤️ Respeito e Dignidade</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💛 Amor e Empatia</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💚 Transparência e Compromisso</h3>
-      </div>
-    </div>
-  </section>
-  `;
-}
-
-function loadProjetos() {
-  const conteudo = document.getElementById('conteudo');
-  conteudo.innerHTML = `
-  <section id="projetos">
-    <h2>Nossas Atividades</h2>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/arte_terapia_idosos.jpg" alt="Arteterapia com idosos">
-        <h3>Arteterapia</h3>
-        <div class="badges">
-          <span class="badge">Arte</span>
-          <span class="badge">Criatividade</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/atividades-cognitivas.jpg" alt="Atividades cognitivas">
-        <h3>Atividades Cognitivas</h3>
-        <div class="badges">
-          <span class="badge">Memória</span>
-          <span class="badge">Lazer</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/voluntariado_idosos.jpg" alt="Voluntariado">
-        <h3>Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/doacao.jpg" alt="Campanhas de doação">
-        <h3>Campanhas de Solidariedade</h3>
-        <div class="badges">
-          <span class="badge">Doação</span>
-          <span class="badge">Solidariedade</span>
-        </div>
-      </div>
-    </div>
-  </section>
-  `;
-}
-
 function loadCadastro() {
   const conteudo = document.getElementById('conteudo');
   conteudo.innerHTML = `
@@ -135,21 +45,50 @@ function loadCadastro() {
           <option value="Brasília">Brasília</option>
           <option value="Fortaleza">Fortaleza</option>
           <option value="Manaus">Manaus</option>
+          <option value="Recife">Recife</option>
+          <option value="Belém">Belém</option>
+          <option value="Goiânia">Goiânia</option>
+          <option value="Natal">Natal</option>
+          <option value="Maceió">Maceió</option>
+          <option value="João Pessoa">João Pessoa</option>
+          <option value="São Luís">São Luís</option>
+          <option value="Cuiabá">Cuiabá</option>
+          <option value="Campo Grande">Campo Grande</option>
+          <option value="Florianópolis">Florianópolis</option>
+          <option value="Vitória">Vitória</option>
         </select>
       </div>
       <div class="campo">
         <label for="estado">Estado:</label>
         <select id="estado" name="estado" required>
           <option value="">Selecione...</option>
-          <option value="SP">São Paulo</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="MG">Minas Gerais</option>
-          <option value="RS">Rio Grande do Sul</option>
-          <option value="PR">Paraná</option>
-          <option value="BA">Bahia</option>
-          <option value="DF">Distrito Federal</option>
-          <option value="CE">Ceará</option>
+          <option value="AC">Acre</option>
+          <option value="AL">Alagoas</option>
+          <option value="AP">Amapá</option>
           <option value="AM">Amazonas</option>
+          <option value="BA">Bahia</option>
+          <option value="CE">Ceará</option>
+          <option value="DF">Distrito Federal</option>
+          <option value="ES">Espírito Santo</option>
+          <option value="GO">Goiás</option>
+          <option value="MA">Maranhão</option>
+          <option value="MT">Mato Grosso</option>
+          <option value="MS">Mato Grosso do Sul</option>
+          <option value="MG">Minas Gerais</option>
+          <option value="PA">Pará</option>
+          <option value="PB">Paraíba</option>
+          <option value="PR">Paraná</option>
+          <option value="PE">Pernambuco</option>
+          <option value="PI">Piauí</option>
+          <option value="RJ">Rio de Janeiro</option>
+          <option value="RN">Rio Grande do Norte</option>
+          <option value="RS">Rio Grande do Sul</option>
+          <option value="RO">Rondônia</option>
+          <option value="RR">Roraima</option>
+          <option value="SC">Santa Catarina</option>
+          <option value="SP">São Paulo</option>
+          <option value="SE">Sergipe</option>
+          <option value="TO">Tocantins</option>
         </select>
       </div>
       <div class="campo">
@@ -168,6 +107,7 @@ function loadCadastro() {
       </div>
       <button type="submit" class="cta-btn">Enviar Cadastro</button>
     </form>
+
     <section id="imagem-voluntariado">
       <h2>Junte-se a Nós!</h2>
       <img src="assets/imagens/voluntariado_idosos.jpg" alt="Voluntariado com idosos" class="card">
@@ -175,76 +115,3 @@ function loadCadastro() {
   </section>
   `;
 }
-
-// ============================
-// SPA e navegação
-// ============================
-
-const links = document.querySelectorAll('nav a');
-const headerCTA = document.querySelector('header .cta-btn');
-
-function setActive(link){
-  links.forEach(l => l.classList.remove('ativo'));
-  link.classList.add('ativo');
-}
-
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const page = link.dataset.page;
-    if(page === 'home') loadHome();
-    if(page === 'projetos') loadProjetos();
-    if(page === 'cadastro') loadCadastro();
-    setActive(link);
-  });
-});
-
-// CTA do header
-headerCTA.addEventListener('click', e => {
-  e.preventDefault();
-  loadProjetos();
-  setActive(document.querySelector('nav a[data-page="projetos"]'));
-});
-
-// Carregar home por padrão
-loadHome();
-
-// ============================
-// Formulário com validação e localStorage
-// ============================
-
-document.addEventListener('submit', function(e){
-  if(e.target && e.target.id === 'formCadastro'){
-    e.preventDefault();
-    const form = e.target;
-    const nome = form.nome.value.trim();
-    const email = form.email.value.trim();
-    const cpf = form.cpf.value.trim();
-    const telefone = form.telefone.value.trim();
-    const dataNascimento = form.dataNascimento.value;
-    const endereco = form.endereco.value.trim();
-    const cep = form.cep.value.trim();
-    const cidade = form.cidade.value;
-    const estado = form.estado.value;
-    const areaInteresse = form.areaInteresse.value;
-    const mensagem = form.mensagem.value.trim();
-
-    if(!nome || !email || !cpf || !telefone || !dataNascimento || !endereco || !cep || !cidade || !estado || !areaInteresse || !mensagem){
-      alert('Preencha todos os campos obrigatórios!');
-      return;
-    }
-
-    let voluntarios = JSON.parse(localStorage.getItem('voluntarios')) || [];
-    voluntarios.push({nome,email,cpf,telefone,dataNascimento,endereco,cep,cidade,estado,areaInteresse,mensagem});
-    localStorage.setItem('voluntarios', JSON.stringify(voluntarios));
-
-    // Mostrar modal
-    document.getElementById('modal').classList.add('show');
-    form.reset();
-  }
-});
-
-// Fechar modal
-document.getElementById('fecharModal').addEventListener('click', function(){
-  document.getElementById('modal').classList.remove('show');
-});
