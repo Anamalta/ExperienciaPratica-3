@@ -3,103 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abraço Amigo - Página Inicial</title>
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
+  <title>Abraço Amigo</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/pages.js" defer></script>
+  <script src="js/form.js" defer></script>
+  <script src="js/main.js" defer></script>
 </head>
 <body>
 
 <header>
   <h1>Abraço Amigo</h1>
   <p>Amor e atenção para a melhor idade</p>
-  <a href="#projetos" class="cta-btn">Conheça Nossos Projetos</a>
+  <a href="#" data-page="projetos" class="cta-btn">Conheça Nossos Projetos</a>
 </header>
 
 <nav>
   <ul>
-    <li><a href="index.html" class="ativo">Home</a></li>
-    <li><a href="projetos.html">Projetos</a></li>
-    <li><a href="cadastro.html">Cadastro</a></li>
+    <li><a href="#" data-page="home" class="ativo">Home</a></li>
+    <li><a href="#" data-page="projetos">Projetos</a></li>
+    <li><a href="#" data-page="cadastro">Cadastro</a></li>
   </ul>
 </nav>
 
-<main>
-  <!-- Sobre a ONG -->
-  <section id="sobre">
-    <h2>Sobre a Nossa História</h2>
-    <p>A ONG Abraço Amigo nasceu com a missão de oferecer amor, atenção e qualidade de vida aos idosos em situação de vulnerabilidade.</p>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/voluntarios_com_idosos.jpg" alt="Voluntários com idosos sorrindo">
-        <h3 class="valor">Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/idosos_sorrindo.jpg" alt="Idosos em harmonia">
-        <h3 class="valor">Bem-Estar</h3>
-        <div class="badges">
-          <span class="badge">Saúde</span>
-          <span class="badge">Alegria</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Valores -->
-  <section id="valores">
-    <h2>Nossos Valores</h2>
-    <div class="section-grid">
-      <div class="card">
-        <h3 class="valor">❤️ Respeito e Dignidade</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💛 Amor e Empatia</h3>
-      </div>
-      <div class="card">
-        <h3 class="valor">💚 Transparência e Compromisso</h3>
-      </div>
-    </div>
-  </section>
-
-  <!-- Atividades -->
-  <section id="projetos">
-    <h2>Nossas Atividades</h2>
-    <div class="section-grid">
-      <div class="card">
-        <img src="assets/imagens/arte_terapia_idosos.jpg" alt="Arteterapia com idosos">
-        <h3>Arteterapia</h3>
-        <div class="badges">
-          <span class="badge">Arte</span>
-          <span class="badge">Criatividade</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/atividades-cognitivas.jpg" alt="Atividades cognitivas">
-        <h3>Atividades Cognitivas</h3>
-        <div class="badges">
-          <span class="badge">Memória</span>
-          <span class="badge">Lazer</span>
-        </div>
-      </div>
-      <div class="card">
-        <img src="assets/imagens/voluntariado_idosos.jpg" alt="Voluntariado">
-        <h3>Voluntariado</h3>
-        <div class="badges">
-          <span class="badge">Social</span>
-          <span class="badge">Educação</span>
-        </div>
-      </div>
-    </div>
-  </section>
+<main id="conteudo">
+  <!-- Conteúdo carregado dinamicamente -->
 </main>
 
+<!-- Modal de confirmação -->
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <h2>Cadastro Realizado!</h2>
+    <p>Obrigado por se juntar à nossa missão!</p>
+    <button id="fecharModal">Fechar</button>
+  </div>
+</div>
+
 <footer>
-  <p>Contato: abracoamigo@gmail.com | (11) 99999-9999</p>
+  <p>Contato: abracoamigo@gmail.com | (11) 4002-8922</p>
 </footer>
 
 </body>

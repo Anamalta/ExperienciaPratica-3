@@ -1,61 +1,32 @@
-// ============================
-// FUNÇÃO DE MODAL
-// ============================
-const modal = document.getElementById('modal');
-const btnFechar = document.getElementById('fecharModal');
+const links = document.querySelectorAll('nav a');
+const headerCTA = document.querySelector('header .cta-btn');
 
-function abrirModal() {
-  modal.classList.add('show');
+function setActive(link){
+  links.forEach(l => l.classList.remove('ativo'));
+  link.classList.add('ativo');
 }
 
-function fecharModal() {
-  modal.classList.remove('show');
-}
-
-if (btnFechar) {
-  btnFechar.addEventListener('click', fecharModal);
-}
-
-// ============================
-// ALERTAS / TOAST
-// ============================
-function mostrarAlerta(tipo, mensagem) {
-  const alert = document.createElement('div');
-  alert.classList.add('alert', `alert-${tipo}`, 'show');
-  alert.textContent = mensagem;
-
-  document.body.appendChild(alert);
-
-  // Remove após 3 segundos
-  setTimeout(() => {
-    alert.classList.remove('show');
-    alert.remove();
-  }, 3000);
-}
-
-// ============================
-// FORMULÁRIO DE CADASTRO
-// ============================
-const formCadastro = document.getElementById('formCadastro');
-
-if (formCadastro) {
-  formCadastro.addEventListener('submit', function(e) {
+links.forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-
-    // Aqui você poderia validar mais campos se quiser
-    const nome = formCadastro.nome.value.trim();
-    const email = formCadastro.email.value.trim();
-
-    if (nome === '' || email === '') {
-      mostrarAlerta('error', 'Preencha todos os campos obrigatórios!');
-      return;
-    }
-
-    // Mostra modal de sucesso
-    abrirModal();
-
-    // Limpa o formulário
-    formCadastro.reset();
+    const page = link.dataset.page;
+    if(page === 'home') loadHome();
+    if(page === 'projetos') loadProjetos();
+    if(page === 'cadastro') loadCadastro();
+    setActive(link);
   });
-}
+});
+
+// CTA do header
+headerCTA.addEventListener('click', e => {
+  e.preventDefault();
+  loadProjetos();
+  setActive(document.querySelector('nav a[data-page="projetos"]'));
+});
+
+// Carregar home por padrão
+loadHome();
+
+
+
 
